@@ -62,6 +62,11 @@ const FloatingButton = ({ style, open }) => {
         ],
     };
 
+    const opacity = state.animation.interpolate({
+        inputRange: [0, 0.5, 1],
+        outputRange: [0, 0, 1],
+    });
+
     const rotation = {
         transform: [
             {
@@ -77,7 +82,12 @@ const FloatingButton = ({ style, open }) => {
         <View style={[styles.container, style]}>
             <TouchableWithoutFeedback>
                 <Animated.View
-                    style={[styles.button, styles.secondary, heartStyle]}
+                    style={[
+                        styles.button,
+                        styles.secondary,
+                        heartStyle,
+                        opacity,
+                    ]}
                 >
                     <AntDesign name="hearto" size={20} color="#F82A4B" />
                 </Animated.View>
@@ -85,7 +95,12 @@ const FloatingButton = ({ style, open }) => {
 
             <TouchableWithoutFeedback>
                 <Animated.View
-                    style={[styles.button, styles.secondary, thumbStyle]}
+                    style={[
+                        styles.button,
+                        styles.secondary,
+                        thumbStyle,
+                        opacity,
+                    ]}
                 >
                     <Entypo name="thumbs-up" size={20} color="#F82A4B" />
                 </Animated.View>
@@ -93,14 +108,16 @@ const FloatingButton = ({ style, open }) => {
 
             <TouchableWithoutFeedback>
                 <Animated.View
-                    style={[styles.button, styles.secondary, pinStyle]}
+                    style={[styles.button, styles.secondary, pinStyle, opacity]}
                 >
                     <Entypo name="location-pin" size={20} color="#F82A4B" />
                 </Animated.View>
             </TouchableWithoutFeedback>
 
             <TouchableWithoutFeedback onPress={toggleMenu}>
-                <Animated.View style={[styles.button, styles.menu, rotation]}>
+                <Animated.View
+                    style={[styles.button, styles.menu, rotation, opacity]}
+                >
                     <AntDesign name="plus" size={24} color="#fff" />
                 </Animated.View>
             </TouchableWithoutFeedback>
