@@ -5,7 +5,7 @@ import FloatingButton from './FloatingButton';
 const Index = () => {
     return (
         <View style={styles.container}>
-            <FloatingButton style={{ bottom: 100 }} />
+            <FloatingButton style={{ bottom: 100 }} open={false} />
         </View>
     );
 };

@@ -10,7 +10,33 @@ import {
 
 import { Entypo, AntDesign } from '@expo/vector-icons';
 
-const FloatingButton = ({ style }) => {
+const FloatingButton = ({ style, open }) => {
+    const state = {
+        animation: new Animated.Value(0),
+    };
+
+    const toggleMenu = () => {
+        const toValue = open ? 0 : 1;
+
+        Animated.spring(state.animation, {
+            toValue,
+            friction: 5,
+        }).start();
+
+        open = !open;
+    };
+
+    const rotation = {
+        transform: [
+            {
+                rotate: state.animation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: ['0deg', '45deg'],
+                }),
+            },
+        ],
+    };
+
     return (
         <View style={[styles.container, style]}>
             <TouchableWithoutFeedback>
@@ -31,8 +57,8 @@ const FloatingButton = ({ style }) => {
                 </Animated.View>
             </TouchableWithoutFeedback>
 
-            <TouchableWithoutFeedback>
-                <Animated.View style={[styles.button, styles.menu]}>
+            <TouchableWithoutFeedback onPress={toggleMenu}>
+                <Animated.View style={[styles.button, styles.menu, rotation]}>
                     <AntDesign name="plus" size={24} color="#fff" />
                 </Animated.View>
             </TouchableWithoutFeedback>
