@@ -26,6 +26,42 @@ const FloatingButton = ({ style, open }) => {
         open = !open;
     };
 
+    const pinStyle = {
+        transform: [
+            { scale: state.animation },
+            {
+                translateY: state.animation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0, -80],
+                }),
+            },
+        ],
+    };
+
+    const thumbStyle = {
+        transform: [
+            { scale: state.animation },
+            {
+                translateY: state.animation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0, -140],
+                }),
+            },
+        ],
+    };
+
+    const heartStyle = {
+        transform: [
+            { scale: state.animation },
+            {
+                translateY: state.animation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0, -200],
+                }),
+            },
+        ],
+    };
+
     const rotation = {
         transform: [
             {
@@ -40,19 +76,25 @@ const FloatingButton = ({ style, open }) => {
     return (
         <View style={[styles.container, style]}>
             <TouchableWithoutFeedback>
-                <Animated.View style={[styles.button, styles.secondary]}>
+                <Animated.View
+                    style={[styles.button, styles.secondary, heartStyle]}
+                >
                     <AntDesign name="hearto" size={20} color="#F82A4B" />
                 </Animated.View>
             </TouchableWithoutFeedback>
 
             <TouchableWithoutFeedback>
-                <Animated.View style={[styles.button, styles.secondary]}>
+                <Animated.View
+                    style={[styles.button, styles.secondary, thumbStyle]}
+                >
                     <Entypo name="thumbs-up" size={20} color="#F82A4B" />
                 </Animated.View>
             </TouchableWithoutFeedback>
 
             <TouchableWithoutFeedback>
-                <Animated.View style={[styles.button, styles.secondary]}>
+                <Animated.View
+                    style={[styles.button, styles.secondary, pinStyle]}
+                >
                     <Entypo name="location-pin" size={20} color="#F82A4B" />
                 </Animated.View>
             </TouchableWithoutFeedback>
